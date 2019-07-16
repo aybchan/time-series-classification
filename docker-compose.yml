@@ -1,0 +1,12 @@
+version: '3.7'
+
+services:
+  jupyterlab:
+    container_name: time-series-classification
+    build: src/.
+    environment:
+     - ROOT=TRUE
+    volumes:
+     - ./src/project:/home/jovyan/project
+    ports:
+     - "8888:8888"
