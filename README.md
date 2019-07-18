@@ -4,4 +4,4 @@ Implementation of Time Series Classification from Scratch with Deep Neural Netwo
 
 ## Use
 
-Run `docker-compose build && docker-compose up` and open the train.ipynb notebook.
+Run `docker-compose build && docker-compose up` and open `localhost:8888` in your browser and open the `train.ipynb` notebook.
