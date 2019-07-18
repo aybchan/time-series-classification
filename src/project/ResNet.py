@@ -12,7 +12,7 @@ class ResNet(nn.Module):
         blocks  = [1,64,128,128]
         self.blocks = nn.ModuleList()
         for b,_ in enumerate(blocks[:-1]):
-            self.blocks.append(ResidualBlock(*blocks[b:b+2]))
+            self.blocks.append(ResidualBlock(*blocks[b:b+2],self.n_in))
         
         self.fc1 =  nn.Linear(blocks[-1],self.n_classes)
         
@@ -30,10 +30,11 @@ class ResNet(nn.Module):
         return x.view(-1,self.n_classes)
     
 class ResidualBlock(nn.Module):
-    def __init__(self,in_maps,out_maps):
+    def __init__(self,in_maps,out_maps,time_steps):
         super(ResidualBlock,self).__init__()
         self.in_maps  = in_maps
         self.out_maps = out_maps
+        self.time_steps = time_steps
         
         self.conv1 = nn.Conv2d(self.in_maps, self.out_maps,(7,1),1,(3,0))
         self.bn1   = nn.BatchNorm2d(self.out_maps)
@@ -46,7 +47,7 @@ class ResidualBlock(nn.Module):
 
         
     def forward(self,x):
-        x = x.view(-1,self.in_maps,427,1)
+        x = x.view(-1,self.in_maps,self.time_steps,1)
         x   = F.relu(self.bn1(self.conv1(x)))
         inx = x
         x   = F.relu(self.bn2(self.conv2(x)))
