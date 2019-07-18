@@ -44,7 +44,7 @@ def data_dictionary(datasets):
 
         dataset_dict[dataset] = {}
         dataset_dict[dataset]['train'] = DataLoader(train_set, batch_size=batch_size)
-        dataset_dict[dataset]['test'] = DataLoader(test_set, batch_size=len(test_set))
+        dataset_dict[dataset]['test'] = DataLoader(test_set, batch_size=batch_size)
 
     return dataset_dict
 

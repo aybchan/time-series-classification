@@ -5,3 +5,5 @@ Implementation of Time Series Classification from Scratch with Deep Neural Netwo
 ## Use
 
 Run `docker-compose build && docker-compose up` and open `localhost:8888` in your browser and open the `train.ipynb` notebook.
+
+To use your own data, implement a Dataset class as in `src/project/data.py` and wrap that in a torch `DataLoader`.
